@@ -1,0 +1,9 @@
+.task{
+text-align: center;
+min-height: 200px;
+}
+.taskHeader{
+    background-color: #f50057;
+    color: #ffffff;
+    padding: 2px;
+}
