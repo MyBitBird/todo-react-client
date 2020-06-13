@@ -6,9 +6,12 @@ const set = (tasks) => {
 };
 
 const add = (task) => {
-  console.log('come to add redux');
-  
   return { type: actionTypes.TASKS_ADD_TASK, task: task };
+};
+
+
+const update = (task) => {
+  return { type: actionTypes.TASKS_UPDATE_TASK, task: task };
 };
 
 export const getTasks = async () => {
@@ -18,14 +21,17 @@ export const getTasks = async () => {
   };
 };
 
-export const addTask = async (task) =>
-{
-  const { data } = await api.post('tasks' , task);
-  console.log('added' , data);
+export const addTask = async (task) => {
+  const { data } = await api.post("tasks", task);
   return (dispatch) => {
     dispatch(add(data));
   };
+};
 
-  
-
-}
+export const updateTaskType = async (task) => {
+  task.type += 1;
+  await api.patch(`tasks/${task.id}`, { type: task.type });
+  return (dispatch) => {
+    dispatch(update(task));
+  };
+};

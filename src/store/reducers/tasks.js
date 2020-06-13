@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import * as actionTypes from "../actions/actionTypes";
 
 const initState = {
@@ -10,10 +9,13 @@ const reducer = (state = initState, action) => {
     case actionTypes.TASKS_LOAD_TASKS:
       return { ...state, tasks: action.tasks };
     case actionTypes.TASKS_ADD_TASK:
-        console.log('come to add' , state.tasks);
-        
-        return {...state , tasks: state.tasks.concat(action.task)}
-    
+      return { ...state, tasks: state.tasks.concat(action.task) };
+    case actionTypes.TASKS_UPDATE_TASK:
+      const updatedTasks = [...state.tasks];
+      const taskIndex = state.tasks.findIndex((x) => x.id == action.task.id);
+      updatedTasks.splice(taskIndex, 1, action.task);
+      return { ...state, tasks: [...updatedTasks] };
+
     default:
       return state;
   }

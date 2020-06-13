@@ -1,2 +1,3 @@
 export const TASKS_LOAD_TASKS = 'TASKS_LOAD_TASKS';
 export const TASKS_ADD_TASK = 'TASKS_ADD_TASK';
+export const TASKS_UPDATE_TASK = 'TASKS_UPDATE_TASK';
