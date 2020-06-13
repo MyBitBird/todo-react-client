@@ -10,7 +10,7 @@ const TaskPanel = ({ panel }) => {
   );
 
   return (
-    <Paper elevation={3} className={classes.container}>
+    <Paper elevation={3} className={classes.container} style={{backgroundColor: panel.color}}>
       <Typography variant="h6" component="h6" className={classes.header}>
         {`#${panel.title}`}
       </Typography>

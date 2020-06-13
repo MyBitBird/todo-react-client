@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Grid } from "@material-ui/core";
 import TaskPanel from "../../components/taskPanel";
 import classes from "./style.module.css";
@@ -6,9 +6,9 @@ import { useDispatch } from "react-redux";
 import { getTasks } from "../../store/actions/tasks";
 
 const taskPanels = [
-  { title: "ToDo", type: 1 },
-  { title: "Doing", type: 2 },
-  { title: "Done", type: 3 },
+  { title: "ToDo", type: 1, color: "#80d8ff" },
+  { title: "Doing", type: 2, color: "#ffa726" },
+  { title: "Done", type: 3, color: "#64ffda" },
 ];
 const Tasks = () => {
   const dispatch = useDispatch();
