@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import Task from "../task";
 import ButtonsPanel from "../buttonsPanel";
 import Dialog from "../dialog";
-import { addTask, updateTaskType } from "../../store/actions/tasks";
+import { addTask, updateTaskType, deleteTask } from "../../store/actions/tasks";
 import { useDispatch } from "react-redux";
 
 const TaskPanel = ({ panel }) => {
@@ -21,7 +21,7 @@ const TaskPanel = ({ panel }) => {
   const [selectedTaskId, setSelectedTaskId] = useState(null);
 
   const handleOpenDialog = () => setDialogOpen(true);
-  
+
   const handleTaskClick = (id) => {
     setSelectedTaskId(selectedTaskId === id ? null : id);
   };
@@ -32,7 +32,14 @@ const TaskPanel = ({ panel }) => {
   };
 
   const handleMoveTask = async () => {
-    dispatch(await updateTaskType(tasks.filter((x) => x.id === selectedTaskId)[0]));
+    dispatch(
+      await updateTaskType(tasks.filter((x) => x.id === selectedTaskId)[0])
+    );
+    setSelectedTaskId(null);
+  };
+
+  const handleDeleteTask = async () => {
+    dispatch(await deleteTask(selectedTaskId));
     setSelectedTaskId(null);
   };
 
@@ -45,10 +52,12 @@ const TaskPanel = ({ panel }) => {
       >
         <Typography variant="h6" component="h6" className={classes.header}>
           {`#${panel.title}`}
+          
           <ButtonsPanel
             onOpenDialog={handleOpenDialog}
             selectedId={selectedTaskId}
             onMoveTask={handleMoveTask}
+            onDeleteTask={handleDeleteTask}
           />
         </Typography>
         {tasks.map((task, key) => (
@@ -73,7 +82,6 @@ const TaskPanel = ({ panel }) => {
               onChange={(e) => setTitle(e.target.value)}
             />
             <TextField
-              autoFocus
               margin="dense"
               id="desc"
               label="Task Description"
