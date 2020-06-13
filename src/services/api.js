@@ -22,7 +22,8 @@ axios.interceptors.response.use(
     console.log("error", error.response);
 
     if (expectedError) {
-      if (error.response.status === 404) toast.error(`Invalid Data ${error.response.data}`);
+      if (error.response.status === 400) toast.error(`Invalid Data ${error.response.data}`);
+      if (error.response.status === 404) toast.error(`Not Found`);
       else if (error.response.status === 500) toast.error("Internal Server");
     } else {
       if ((error + "").includes("Network")) toast.error("Network Error");
