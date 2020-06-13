@@ -1,0 +1,15 @@
+.container{
+text-align: center;
+min-height: 200px;
+
+}
+.header{
+    background-color: #f50057;
+    color: #ffffff;
+    padding: 2px;
+}
+.task{
+    max-width: 80%;
+    margin: 15px auto;
+    text-align: center;
+}

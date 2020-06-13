@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Grid } from "@material-ui/core";
-import Task from "../../components/task";
+import TaskPanel from "../../components/taskPanel";
 import classes from "./style.module.css";
 import { useDispatch } from "react-redux";
 import { getTasks } from "../../store/actions/tasks";
@@ -22,9 +22,9 @@ const Tasks = () => {
 
   return (
     <Grid container spacing={2} className={classes.container}>
-      {taskPanels.map((task, key) => (
+      {taskPanels.map((panel, key) => (
         <Grid key={key} item md={4} xs={12}>
-          <Task task={task} />
+          <TaskPanel panel={panel} />
         </Grid>
       ))}
     </Grid>
