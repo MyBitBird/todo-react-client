@@ -5,10 +5,13 @@ import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { createStore, applyMiddleware, compose, combineReducers } from "redux";
+import { createStore, applyMiddleware,  combineReducers } from "redux";
 import tasksReducer from "./store/reducers/tasks";
 import { Provider } from "react-redux";
 import thunk from 'redux-thunk';
+import { ThemeProvider } from '@material-ui/core/styles';
+import Theme from './components/theme'
+
 
 
 const reducers = combineReducers({
@@ -20,8 +23,10 @@ const store = createStore(reducers , applyMiddleware(thunk));
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
+    <ThemeProvider theme={Theme}>
       <ToastContainer />
       <App />
+      </ThemeProvider>
     </Provider>
   </React.StrictMode>,
   document.getElementById("root")
