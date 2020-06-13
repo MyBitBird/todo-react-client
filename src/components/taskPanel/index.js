@@ -20,6 +20,11 @@ const TaskPanel = ({ panel }) => {
   const handleOpenDialog = () => setDialogOpen(true);
   const [title , setTitle] = useState('');
   const [desc , setDesc] = useState('');
+  const [selectedTaskId , setSelectedTaskId] = useState(null)
+
+  const handleTaskClick = id =>{
+    setSelectedTaskId( selectedTaskId === id ? null : id)
+  }
 
 
   const handleAddTask = async () => {
@@ -36,10 +41,10 @@ const TaskPanel = ({ panel }) => {
       >
         <Typography variant="h6" component="h6" className={classes.header}>
           {`#${panel.title}`}
-          <ButtonsPanel onOpenDialog={handleOpenDialog} />
+          <ButtonsPanel onOpenDialog={handleOpenDialog} selectedId={selectedTaskId} />
         </Typography>
         {tasks.map((task, key) => (
-          <Task task={task} key={key} />
+          <Task task={task} key={key} selected={selectedTaskId === task.id} onSelected={handleTaskClick} />
         ))}
       </Paper>
 
