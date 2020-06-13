@@ -9,10 +9,13 @@ const add = (task) => {
   return { type: actionTypes.TASKS_ADD_TASK, task: task };
 };
 
-
 const update = (task) => {
   return { type: actionTypes.TASKS_UPDATE_TASK, task: task };
 };
+
+const del = (id) => {
+  return { type: actionTypes.TASKS_DELETE_TASK, id: id };
+}
 
 export const getTasks = async () => {
   const { data } = await api.get("tasks");
@@ -35,3 +38,11 @@ export const updateTaskType = async (task) => {
     dispatch(update(task));
   };
 };
+
+export const deleteTask  = async id =>
+{
+  await api.delete(`tasks/${id}`);
+  return (dispatch) => {
+    dispatch(del(id));
+  };
+}

@@ -9,18 +9,20 @@ import Theme from "../theme";
 const ButtonsPanel = (props) => {
   return (
     <div className={classes.container}>
-      {!props.selectedId ? 
+      {!props.selectedId ? (
         <IconButton
           style={Theme.palette.white}
           size="small"
-          onClick={props.onOpenDialog}>
+          onClick={props.onOpenDialog}
+        >
           <AddIcon fontSize="inherit" />
         </IconButton>
-       : 
+      ) : (
         <>
           <IconButton
             style={Theme.palette.white}
             size="small"
+            onClick={props.onDeleteTask}
           >
             <DeleteIcon fontSize="inherit" />
           </IconButton>
@@ -28,12 +30,12 @@ const ButtonsPanel = (props) => {
           <IconButton
             style={Theme.palette.white}
             size="small"
-            onClick = {props.onMoveTask}
+            onClick={props.onMoveTask}
           >
             <ArrowIcon fontSize="inherit" />
           </IconButton>
         </>
-      }
+      )}
     </div>
   );
 };
