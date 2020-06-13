@@ -11,9 +11,9 @@ const reducer = (state = initState, action) => {
     case actionTypes.TASKS_ADD_TASK:
       return { ...state, tasks: state.tasks.concat(action.task) };
     case actionTypes.TASKS_DELETE_TASK:
-      return { ...state, tasks: state.tasks.filter(x => x.id != action.id) };
+      return { ...state, tasks: state.tasks.filter(x => x._id != action.id) };
     case actionTypes.TASKS_UPDATE_TASK:
-      return { ...state, tasks: (state.tasks.filter(x => x.id != action.task.id)).concat(action.task) };
+      return { ...state, tasks: (state.tasks.filter(x => x._id != action.task._id)).concat(action.task) };
 
     default:
       return state;

@@ -13,6 +13,8 @@ const TaskPanel = ({ panel }) => {
     state.tasks.tasks.filter((x) => x.type === panel.type)
   );
 
+  console.log('tasks' , tasks)
+
   const dispatch = useDispatch();
 
   const [isDialogOpen, setDialogOpen] = useState(false);
@@ -33,7 +35,7 @@ const TaskPanel = ({ panel }) => {
 
   const handleMoveTask = async () => {
     dispatch(
-      await updateTaskType(tasks.filter((x) => x.id === selectedTaskId)[0])
+      await updateTaskType(tasks.filter((x) => x._id === selectedTaskId)[0])
     );
     setSelectedTaskId(null);
   };
@@ -52,7 +54,7 @@ const TaskPanel = ({ panel }) => {
       >
         <Typography variant="h6" component="h6" className={classes.header}>
           {`#${panel.title}`}
-          
+
           <ButtonsPanel
             onOpenDialog={handleOpenDialog}
             selectedId={selectedTaskId}
@@ -64,7 +66,7 @@ const TaskPanel = ({ panel }) => {
           <Task
             task={task}
             key={key}
-            selected={selectedTaskId === task.id}
+            selected={selectedTaskId === task._id}
             onSelected={handleTaskClick}
           />
         ))}

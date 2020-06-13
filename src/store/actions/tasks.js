@@ -33,7 +33,7 @@ export const addTask = async (task) => {
 
 export const updateTaskType = async (task) => {
   task.type += 1;
-  await api.patch(`tasks/${task.id}`, { type: task.type });
+  await api.patch(`tasks/${task._id}`, { type: task.type });
   return (dispatch) => {
     dispatch(update(task));
   };

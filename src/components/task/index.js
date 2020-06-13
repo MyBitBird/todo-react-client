@@ -7,7 +7,7 @@ const Task = ({ task, selected , onSelected }) => {
     <Card
       className={classes.task}
       style={selected ? { backgroundColor: '#fff176' } : null}
-      onClick = {() => onSelected(task.id)}
+      onClick = {() => onSelected(task._id)}
     >
       <CardActionArea>
         <CardContent>
