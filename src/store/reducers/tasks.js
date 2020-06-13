@@ -7,8 +7,13 @@ const initState = {
 
 const reducer = (state = initState, action) => {
   switch (action.type) {
-    case actionTypes.TASKS_LOAD_DEVICES:
+    case actionTypes.TASKS_LOAD_TASKS:
       return { ...state, tasks: action.tasks };
+    case actionTypes.TASKS_ADD_TASK:
+        console.log('come to add' , state.tasks);
+        
+        return {...state , tasks: state.tasks.concat(action.task)}
+    
     default:
       return state;
   }
