@@ -6,13 +6,19 @@ import AddIcon from "@material-ui/icons/Add";
 import EditIcon from "@material-ui/icons/Edit";
 
 import Theme from "../theme";
-const ButtonsPanel = ({ selectedId , onOpenDialog }) => {
+const ButtonsPanel = ({ selectedId, onOpenDialog }) => {
   return (
     <div className={classes.container}>
-      <IconButton aria-label="add" style={Theme.palette.white} size="small" onClick={onOpenDialog}>
-        <AddIcon fontSize="inherit" />
-      </IconButton>
-      {!selectedId ? null : (
+      {!selectedId ? (
+        <IconButton
+          aria-label="add"
+          style={Theme.palette.white}
+          size="small"
+          onClick={onOpenDialog}
+        >
+          <AddIcon fontSize="inherit" />
+        </IconButton>
+      ) : (
         <>
           <IconButton
             aria-label="edit"
@@ -21,6 +27,7 @@ const ButtonsPanel = ({ selectedId , onOpenDialog }) => {
           >
             <EditIcon fontSize="inherit" />
           </IconButton>
+          &nbsp;
           <IconButton
             aria-label="delete"
             style={Theme.palette.white}
