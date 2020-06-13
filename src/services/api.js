@@ -19,15 +19,15 @@ axios.interceptors.response.use(
       error.response.status >= 400 &&
       error.response.status <= 500;
 
-    console.log("error", error);
+    console.log("error", error.response);
 
     if (expectedError) {
-     
-       if (error.response.status === 404) toast.error("Not Found");
+      if (error.response.status === 404) toast.error(`Invalid Data ${error.response.data}`);
       else if (error.response.status === 500) toast.error("Internal Server");
+    } else {
+      if ((error + "").includes("Network")) toast.error("Network Error");
+      else toast.error("UnExpected Error");
     }
-    if ((error + "").includes("Network")) toast.error("Network Error"); 
-    else toast.error("UnExpected Error");
 
     return Promise.reject(error);
   }
