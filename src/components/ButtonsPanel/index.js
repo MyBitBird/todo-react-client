@@ -7,7 +7,6 @@ import ArrowIcon from "@material-ui/icons/ArrowForward";
 
 import Theme from "../theme";
 const ButtonsPanel = (props) => {
-  console.log('butt',props)
   return (
     <div className={classes.container}>
       {!props.selectedId ? (

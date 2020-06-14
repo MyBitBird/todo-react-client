@@ -13,8 +13,6 @@ const TaskPanel = ({ panel }) => {
     state.tasks.tasks.filter((x) => x.type === panel.type)
   );
 
-  console.log('tasks' , tasks)
-
   const dispatch = useDispatch();
 
   const [isDialogOpen, setDialogOpen] = useState(false);
