@@ -29,6 +29,8 @@ const TaskPanel = ({ panel }) => {
   const dispatch = useDispatch();
   const handleAddTask = async () => {
     dispatch(await addTask({ title: title, desc: desc, type: panel.type }));
+    setTitle('');
+    setDesc('');
     setDialogOpen(false);
   };
 
@@ -82,6 +84,7 @@ const TaskPanel = ({ panel }) => {
         <DialogContent>
           <FormControl>
             <TextField
+              value={title}
               autoFocus
               margin="dense"
               id="title"
@@ -90,6 +93,7 @@ const TaskPanel = ({ panel }) => {
               onChange={(e) => setTitle(e.target.value)}
             />
             <TextField
+              value={desc}
               margin="dense"
               id="desc"
               label="Task Description"
