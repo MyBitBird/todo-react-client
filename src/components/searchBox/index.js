@@ -15,7 +15,7 @@ const SearchBox = ({ data, onSearchFinished }) => {
   };
 
   return (
-    <div style={{ backgroundColor: "white" }}>
+    <div style={{ backgroundColor: "white" , margin:2 }}>
       <TextField
         fullWidth
         id="outlined-basic"
