@@ -82,7 +82,6 @@ const TaskPanel = ({ panel }) => {
 
       <Dialog open={isDialogOpen}>
         <DialogContent>
-          <FormControl>
             <TextField
               value={title}
               autoFocus
@@ -103,7 +102,6 @@ const TaskPanel = ({ panel }) => {
               variant="outlined"
               onChange={(e) => setDesc(e.target.value)}
             />
-          </FormControl>
         </DialogContent>
         <DialogActions>
           <Button onClick={() => setDialogOpen(false)} color="primary">
