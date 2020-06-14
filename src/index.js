@@ -7,6 +7,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { createStore, applyMiddleware,  combineReducers } from "redux";
 import tasksReducer from "./store/reducers/tasks";
+import globalReducer from "./store/reducers/global";
 import { Provider } from "react-redux";
 import thunk from 'redux-thunk';
 import { ThemeProvider } from '@material-ui/core/styles';
@@ -16,6 +17,7 @@ import Theme from './components/theme'
 
 const reducers = combineReducers({
   tasks: tasksReducer,
+  global: globalReducer
 });
 
 const store = createStore(reducers , applyMiddleware(thunk));
