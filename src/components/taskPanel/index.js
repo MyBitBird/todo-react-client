@@ -7,13 +7,13 @@ import ButtonsPanel from "../buttonsPanel";
 import Dialog from "../dialog";
 import { addTask, updateTaskType, deleteTask } from "../../store/actions/tasks";
 import { useDispatch } from "react-redux";
+import SearchBox from "../searchBox";
 
 const TaskPanel = ({ panel }) => {
-  const tasks = useSelector((state) =>
-    state.tasks.tasks.filter((x) => x.type === panel.type)
-  );
 
-  const dispatch = useDispatch();
+  const tasks = useSelector(state => state.tasks.tasks);
+  const panelTasks = tasks.filter((x) => x.type === panel.type);
+  const [filteredTasks, setFilteredTasks] = useState(null);
 
   const [isDialogOpen, setDialogOpen] = useState(false);
   const [title, setTitle] = useState("");
@@ -26,6 +26,7 @@ const TaskPanel = ({ panel }) => {
     setSelectedTaskId(selectedTaskId === id ? null : id);
   };
 
+  const dispatch = useDispatch();
   const handleAddTask = async () => {
     dispatch(await addTask({ title: title, desc: desc, type: panel.type }));
     setDialogOpen(false);
@@ -33,7 +34,7 @@ const TaskPanel = ({ panel }) => {
 
   const handleMoveTask = async () => {
     dispatch(
-      await updateTaskType(tasks.filter((x) => x._id === selectedTaskId)[0])
+      await updateTaskType(panelTasks.filter((x) => x._id === selectedTaskId)[0])
     );
     setSelectedTaskId(null);
   };
@@ -43,6 +44,12 @@ const TaskPanel = ({ panel }) => {
     setSelectedTaskId(null);
   };
 
+  const handleSearchFinished = (result) => {
+    setFilteredTasks(result);
+  };
+  
+  const tasksToShow = filteredTasks ? filteredTasks : panelTasks; 
+  
   return (
     <>
       <Paper
@@ -60,7 +67,8 @@ const TaskPanel = ({ panel }) => {
             onDeleteTask={handleDeleteTask}
           />
         </Typography>
-        {tasks.map((task, key) => (
+        <SearchBox data={[...panelTasks]} onSearchFinished={handleSearchFinished} />
+        {tasksToShow.map((task, key) => (
           <Task
             task={task}
             key={key}
@@ -88,6 +96,7 @@ const TaskPanel = ({ panel }) => {
               rows={4}
               fullWidth
               multiline
+              variant="outlined"
               onChange={(e) => setDesc(e.target.value)}
             />
           </FormControl>
